@@ -3,6 +3,7 @@ import { checkSessionIdExists } from '../middlewares/check-session-id-exists'
 import { randomUUID } from 'crypto'
 import { FastifyInstance } from 'fastify'
 import { z } from 'zod'
+import { hash, compare } from 'bcryptjs'
 
 export async function usersRoutes(app: FastifyInstance) {
   app.get(
@@ -18,7 +19,6 @@ export async function usersRoutes(app: FastifyInstance) {
           session_id: sessionId,
         },
       })
-      console.log(sessionId)
 
       return users
     },
@@ -69,11 +69,13 @@ export async function usersRoutes(app: FastifyInstance) {
       })
     }
 
+    const password_hash = await hash(password, 6)
+
     const user = await prisma.user.create({
       data: {
         name,
         email,
-        password_hash: password,
+        password_hash,
         session_id: sessionId,
       },
     })
@@ -119,4 +121,57 @@ export async function usersRoutes(app: FastifyInstance) {
       }
     },
   )
+
+  app.put('/login', async (request, reply) => {
+    const createUserBodySchema = z.object({
+      email: z.string().email({ message: 'Digite um email válido!' }),
+      password: z.string().min(6).max(32),
+    })
+
+    const { email, password } = createUserBodySchema.parse(request.body)
+
+    let sessionId = request.cookies.sessionId
+
+    if (!sessionId) {
+      sessionId = randomUUID()
+
+      reply.cookie('sessionId', sessionId, {
+        path: '/',
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      })
+    }
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    })
+
+    if (!user) {
+      reply.code(404).send({ error: 'Invalid credentials' })
+      return
+    }
+
+    const doesPasswordMatches = await compare(password, user.password_hash)
+
+    if (!doesPasswordMatches) {
+      reply.code(404).send({ error: 'Invalid credentials' })
+      return
+    }
+
+    try {
+      const userUpdated = await prisma.user.update({
+        where: {
+          email,
+        },
+        data: {
+          updated_at: new Date(),
+          session_id: sessionId,
+        },
+      })
+      return reply.status(201).send({ userUpdated })
+    } catch (error) {
+      return reply.code(404).send({ error: 'User not found' })
+    }
+  })
 }
