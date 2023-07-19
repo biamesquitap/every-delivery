@@ -49,6 +49,58 @@ export async function usersRoutes(app: FastifyInstance) {
     },
   )
 
+  app.post('/sessions', async (request, reply) => {
+    const createUserBodySchema = z.object({
+      email: z.string().email({ message: 'Digite um email válido!' }),
+      password: z.string().min(6).max(32),
+    })
+
+    const { email, password } = createUserBodySchema.parse(request.body)
+
+    const findUser = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    })
+
+    if (!findUser) {
+      return reply.status(400).send()
+    }
+
+    if (findUser?.password_hash) {
+      const isPasswordCorrectlyHashed = await compare(
+        password,
+        findUser?.password_hash,
+      )
+
+      if (!isPasswordCorrectlyHashed) {
+        return reply.status(400).send()
+      }
+    }
+
+    let sessionId = request.cookies.sessionId
+
+    if (!sessionId) {
+      sessionId = randomUUID()
+
+      reply.cookie('sessionId', sessionId, {
+        path: '/',
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      })
+    }
+
+    const user = await prisma.user.update({
+      where: {
+        email,
+      },
+      data: {
+        session_id: sessionId,
+      },
+    })
+
+    return reply.status(200).send({ user })
+  })
+
   app.post('/', async (request, reply) => {
     const createUserBodySchema = z.object({
       name: z.string(),

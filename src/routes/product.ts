@@ -6,13 +6,10 @@ import { z } from 'zod'
 export async function productsRoutes(app: FastifyInstance) {
   app.get(
     '/',
-    {
-      preHandler: [checkSessionIdExists],
-    },
-    async () => {
-      const product = await prisma.product.findMany()
 
-      return { product, total: product?.length || 0 }
+    async () => {
+      const products = await prisma.product.findMany()
+      return { products, total: products?.length || 0 }
     },
   )
 
@@ -43,7 +40,7 @@ export async function productsRoutes(app: FastifyInstance) {
       name: z.string(),
       description: z.string().optional(),
       price: z.number(),
-      type: z.enum(['eletronics', 'food', 'books', 'drinks', 'apparel']),
+      type: z.enum(['eletronicos', 'comidas', 'livros', 'vestuario']),
     })
 
     const { name, description, price, type } = createProductBodySchema.parse(

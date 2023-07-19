@@ -5,13 +5,16 @@
   "license": "MIT",
   "dependencies": {
     "@fastify/cookie": "^8.3.0",
+    "@fastify/cors": "^8.3.0",
     "@prisma/client": "^5.0.0",
     "@types/bcryptjs": "^2.4.2",
     "bcrypt-nodejs": "^0.0.3",
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "fastify": "^4.19.2",
+    "fastify": "^4.20.0",
+    "fastify-cors": "^6.1.0",
     "sqlite3": "^5.1.6",
     "zod": "^3.21.4"
   },
@@ -23,6 +26,7 @@
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.0.1",
+    "@types/fastify-cors": "^2.1.0",
     "@types/node": "^20.4.2",
     "@types/supertest": "^2.0.12",
     "eslint": "^8.44.0",
