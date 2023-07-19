@@ -6,8 +6,6 @@ export async function checkSessionIdExists(
 ) {
   const sessionId = request.headers.sessionId
 
-  console.log(sessionId)
-
   if (!sessionId) {
     return reply.status(401).send({
       error: 'Unauthorized.',
