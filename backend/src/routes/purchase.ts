@@ -19,6 +19,9 @@ export async function purchaseRoutes(app: FastifyInstance) {
         where: {
           userId,
         },
+        orderBy: {
+          createdAt: 'desc',
+        },
       })
 
       return { purchase, total: purchase?.length || 0 }
