@@ -14,7 +14,7 @@
 4. Execute o seguinte comando: `npm run dev`;
 5. Para gerar as migrações: `npx prisma migrate dev`
 6. Para melhorar a visualização das tabelas: `npx prisma studio`;
-7. Agora que o backend está em execução, em outro terminal, vá para a pasta inicial do projeto, vá para a pasta onde está localizado o frontend (`cd frontend`);
+7. Agora que o backend está em execução, em outro terminal, vá para a pasta inicial do projeto, vá para a pasta onde está localizado o frontend (`cd web`);
 8. Digite o seguinte comando para instalar todas as dependências: `npm install`;
 9. Agora digite o seguinte comando: `npm run dev`;
 
