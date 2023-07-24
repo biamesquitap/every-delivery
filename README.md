@@ -98,19 +98,24 @@
 ## Prints do frontend da aplicação
 ![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/d9668966-e679-451e-b7d1-a1262905918c)
 
-![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/b275e447-138b-451a-b4e8-02d697a9734e)
+![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/e0ac50db-a2cc-46e8-943a-34ba03e974ea)
 
-![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/ec4baa82-ab0a-429a-af95-3ba1f891b921)
 
-![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/fac6017f-906b-44b7-b321-4d50fe870207)
+![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/fe1b648f-5c29-4800-a1cd-96ca862898db)
 
-![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/a3984246-24f3-4a5b-8f87-41bf15f801f2)
+![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/a9f36b5d-3fb3-4341-9172-5bc0655b68dc)
+
+![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/6b6a4f26-7bdc-4687-915b-328df9c4357a)
+
+![image](https://github.com/biamesquitap/challenge-delliv/assets/94808375/9ccc7f1b-7bf4-4faa-9845-32785877245a)
+
+
 
 
 ## Melhorias
 
-1. Criar tela de detalhes dos pedidos.
-2. Integrar endereço.
+1. Criar tela de detalhes de um pedido específico.
+
 
 # Contato 
 Beatriz Mesquita - biamesquitap@gmail.com - [GitHub](https://github.com/biamesquitap) - [LinkedIn](https://www.linkedin.com/in/beatriz-ponte/)
