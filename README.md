@@ -1,4 +1,4 @@
-# Challenge Delliv Jr
+# Every Delivery
 
 ## Conteúdo
 - [Ir para Como executar o programa?](#como-executar-o-programa)
