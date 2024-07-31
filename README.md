@@ -8,7 +8,7 @@
   
 
 ## Como executar o programa?
-1. O primeiro passo é clonar o projeto em algum lugar do seu computador: `https://github.com/biamesquitap/challenge-delliv.git`;
+1. O primeiro passo é clonar o projeto em algum lugar do seu computador: `[https://github.com/biamesquitap/every-delivery.git]`;
 2. Agora acesse o terminal dentro da pasta do projeto;
 3. Entre na pasta do servidor (`cd backend`), abra o código (`code .`) e copie o arquivo .env.example para um novo arquivo .env;
 4. Execute o seguinte comando: `npm run dev`;
